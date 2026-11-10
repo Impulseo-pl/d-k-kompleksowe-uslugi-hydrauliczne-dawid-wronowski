@@ -1856,3 +1856,47 @@ footer{view-transition-name:mt-foot}
 .btn-accent{color:#fff}
 .nav .nav-links a.btn-accent{color:#fff}
 .btn-accent[data-accent-d],.cta-d .btn-accent{color:#fff}
+
+/* === SKÓRKA „CZARNY + BEŻ" (wzór: klindworthroofing.com, polecenie Szymona 10.11.2026) ===
+   Ciemne sekcje, ciepły beżowy akcent, wersalikowe nagłówki, jasna sekcja usług. Tokeny w OSTATNIM :root. */
+:root{
+  --paper:#0e0e0f; --paper-2:#161618; --paper-3:#1d1d20;
+  --ink:#f3eee5; --ink-soft:#e2dccf; --muted:#b4ab9b;
+  --line:rgba(243,238,229,.16);
+  --accent:#ac9376; --accent-d:#9a8265; --accent-soft:rgba(172,147,118,.14); --gold:#ac9376;
+  --accent-text:#cdb594; --dark:#050505;
+  --font-display:'Oswald','Space Grotesk',sans-serif;
+}
+body{background:var(--paper);color:var(--ink)}
+h1,h2,h3,.hf-title,.fu-name,.eyebrow,.hf-kicker{text-transform:uppercase;letter-spacing:.02em}
+h2{font-weight:600;font-size:clamp(2.4rem,1.6rem + 3.6vw,4.6rem);line-height:1.02}
+.btn-accent,.nav .nav-links a.btn-accent{background:var(--accent);color:#111;border-color:var(--accent);border-radius:0;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.btn-accent:hover{background:#c4ad90}
+.btn-ghost,.btn-light{border-radius:0;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);border-color:var(--ink)}
+.nav,.nav.is-stuck{background:#050505;border-bottom:1px solid var(--line)}
+.nav .brand .name{text-transform:uppercase;letter-spacing:.14em;color:#fff}
+.nav-links a{color:#e9e3d8}
+.hero-fach .hf-title{font-size:clamp(3rem,2rem + 6vw,7.4rem);line-height:.96;font-weight:700}
+.hero-fach .hf-inner{max-width:60rem}
+.fach-promise,.gateways-band,.proces,.obszar,.faq-klinika,section{background:var(--paper);color:var(--ink)}
+.fach-promise{background:#050505;border-block:1px solid var(--line)}
+.fp-row li{text-transform:uppercase;letter-spacing:.12em;color:var(--accent-text)}
+/* sekcja usług = jasny beż jak „Services" u wzoru */
+.fach-uslugi{background:#e9e1d3;color:#16130f}
+.fach-uslugi h2,.fach-uslugi .fu-name{color:#16130f}
+.fach-uslugi .head p,.fach-uslugi .fu-desc{color:#4a4338}
+.fach-uslugi .eyebrow{color:#6e5a3f}
+.fach-uslugi .fu-row{border-color:rgba(22,19,15,.2)}
+.fach-uslugi .fu-cta,.fach-uslugi .btn-ghost{color:#16130f;border-color:#16130f}
+.fach-uslugi .btn-ghost:hover{background:#16130f;color:#e9e1d3}
+.gateway .g-ttl{text-transform:uppercase;letter-spacing:.06em}
+img,.tile,.gateway,.obszar-mapa iframe{border-radius:0}
+.cta{background:#050505;text-align:center}
+.cta h2{font-size:clamp(2.6rem,1.8rem + 4.4vw,6rem)}
+.cta .btn-ghost-cta{font-family:var(--font-display);font-size:clamp(1.8rem,1.2rem + 3vw,3.6rem);border:0;letter-spacing:.04em;color:var(--accent-text);text-transform:none}
+footer{background:#050505;color:var(--ink-soft);border-top:1px solid var(--line)}
+footer a{color:var(--ink-soft)}
+details.faq-item{border-color:var(--line)}
+.stopklatka{display:none}
+.obszar-list li{background:transparent;color:var(--ink);border-color:var(--line)}
+.obszar-list li.is-home{background:var(--accent);color:#111;border-color:var(--accent)}
