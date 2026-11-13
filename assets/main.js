@@ -156,6 +156,60 @@
     }
   } catch (e) { }
 
+  /* 7b. Nagłówek jak u wzorca: 3 kadry, miniatury, licznik 01/03 i pasek postępu */
+  try {
+    var sl = document.querySelector('[data-slider]');
+    if (sl) {
+      var kadry = [].slice.call(sl.querySelectorAll('.slide'));
+      var th = [].slice.call(document.querySelectorAll('.thumbs .th'));
+      var cur = document.querySelector('.count .cur');
+      var bar = document.querySelector('.count .bar i');
+      var nr = sl.querySelector('[data-nr]'), nazwa = sl.querySelector('[data-name]');
+      var akt = 0, CZAS = 6500, zegar = null;
+      var startPasek = function () {
+        if (!bar || RM) return;
+        bar.classList.remove('go'); void bar.offsetWidth;
+        bar.style.setProperty('--t', CZAS + 'ms'); bar.classList.add('go');
+      };
+      var idz = function (i) {
+        i = (i + kadry.length) % kadry.length;
+        if (i === akt) { startPasek(); return; }
+        kadry.forEach(function (k) { k.classList.remove('was'); });
+        kadry[akt].classList.remove('is-active'); kadry[akt].classList.add('was');
+        kadry[i].classList.add('is-active');
+        th.forEach(function (b, j) { b.classList.toggle('is-active', j === i); b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
+        var n = ('0' + (i + 1)).slice(-2);
+        if (cur) cur.textContent = n;
+        if (nr) nr.textContent = n;
+        if (nazwa && th[i]) nazwa.innerHTML = th[i].getAttribute('data-name') || '';
+        akt = i; startPasek();
+      };
+      var plan = function () { clearInterval(zegar); if (!RM) zegar = setInterval(function () { if (!document.hidden) idz(akt + 1); }, CZAS); };
+      th.forEach(function (b) { b.addEventListener('click', function () { idz(parseInt(b.getAttribute('data-go'), 10) || 0); plan(); }); });
+      var ruszaj = function () { startPasek(); plan(); };
+      if (d.classList.contains('intro-on')) document.addEventListener('wejscie:koniec', ruszaj); else ruszaj();
+    }
+  } catch (e) { }
+
+  /* 7c. Fioletowa linia pod ostatnią usługą rośnie przy przewijaniu */
+  try {
+    var pl = document.querySelector('.prod-line');
+    if (pl && !RM) {
+      naScroll.push(function () {
+        var r = pl.getBoundingClientRect(), h = window.innerHeight;
+        var p = Math.max(0, Math.min(1, (h - r.top) / (h * 0.6)));
+        pl.style.setProperty('--p', p.toFixed(3));
+      });
+    }
+  } catch (e) { }
+
+  /* 7d. Stopklatka: tło przyklejone do ekranu pokazujemy tylko, gdy sekcja jest blisko */
+  document.querySelectorAll('.stopklatka').forEach((sk) => {
+    if (!('IntersectionObserver' in window)) { sk.classList.add('stk-on'); return; }
+    new IntersectionObserver((w) => { w.forEach((e) => sk.classList.toggle('stk-on', e.isIntersecting)); },
+      { rootMargin: '25% 0px 25% 0px' }).observe(sk);
+  });
+
   /* 8. Menu na telefonie */
   try {
     var burger = document.querySelector('.burger');
